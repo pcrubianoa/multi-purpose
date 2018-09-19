@@ -7,7 +7,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import { Form, HasError, AlertError } from 'vform';
+import moment from 'moment';
+import {
+    Form,
+    HasError,
+    AlertError
+} from 'vform';
 
 window.Form = Form;
 Vue.component(HasError.name, HasError)
@@ -27,7 +32,16 @@ const routes = [{
     component: require('./components/Profile.vue')
 }]
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({
+    routes
+});
+
+Vue.filter('upText', function(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1)
+});
+Vue.filter('myDate', function(created) {
+    return moment(created).format('MMMM Do YYYY');
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,4 +51,7 @@ const router = new VueRouter({ routes });
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const app = new Vue({ el: '#app', router });
+const app = new Vue({
+    el: '#app',
+    router
+});
