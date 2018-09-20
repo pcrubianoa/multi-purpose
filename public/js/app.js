@@ -14070,6 +14070,7 @@ Vue.filter('myDate', function (created) {
     return __WEBPACK_IMPORTED_MODULE_0_moment___default()(created).format('MMMM Do YYYY');
 });
 
+window.Fire = new Vue();
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51278,7 +51279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     createUser: function createUser() {
       this.$Progress.start();
       this.form.post("api/user");
-
+      Fire.$emit("AfterCreate");
       $("#addNew").modal("hide");
       toast({
         type: "success",
@@ -51289,7 +51290,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   created: function created() {
+    var _this2 = this;
+
     this.loadUsers();
+    Fire.$on("AfterCreate", function () {
+      _this2.loadUsers();
+    });
   }
 });
 

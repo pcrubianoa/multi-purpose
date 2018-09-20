@@ -127,7 +127,7 @@ export default {
     createUser() {
       this.$Progress.start();
       this.form.post("api/user");
-
+      Fire.$emit("AfterCreate");
       $("#addNew").modal("hide");
       toast({
         type: "success",
@@ -139,6 +139,9 @@ export default {
   },
   created() {
     this.loadUsers();
+    Fire.$on("AfterCreate", () => {
+      this.loadUsers();
+    });
   }
 };
 </script>
