@@ -126,15 +126,18 @@ export default {
     },
     createUser() {
       this.$Progress.start();
-      this.form.post("api/user");
-      Fire.$emit("AfterCreate");
-      $("#addNew").modal("hide");
-      toast({
-        type: "success",
-        title: "User Created in successfully"
-      });
-
-      this.$Progress.finish();
+      this.form
+        .post("api/user")
+        .then(() => {
+          Fire.$emit("AfterCreate");
+          $("#addNew").modal("hide");
+          toast({
+            type: "success",
+            title: "User Created in successfully"
+          });
+          this.$Progress.finish();
+        })
+        .catch(() => {});
     }
   },
   created() {
