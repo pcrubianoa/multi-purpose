@@ -77,38 +77,48 @@
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                                    <input type="email" v-model="form.name" class="form-control" id="inputName" placeholder="Name">
+                                    <div class="col-sm-12">
+                                    <input type="" v-model="form.name" class="form-control" id="inputName" placeholder="Name">
+                                     <has-error :form="form" field="name"></has-error>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
-                                <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <div class="col-sm-12">
+                                    <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email">
+                                     <has-error :form="form" field="email"></has-error>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
                                     <div class="col-sm-12">
-                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                    <textarea  v-model="form.bio" class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                     <has-error :form="form" field="bio"></has-error>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
-                                <input type="file" @change="updateProfile" name="photo" class="form-input">
+                                    <div class="col-sm-12">
+                                        <input type="file" @change="updateProfile" name="photo" class="form-input">
+                                    </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="passpord" class="col-sm-12 control-label">Passport (leave empty if not changing)</label>
+                                    <label for="password" class="col-sm-12 control-label">Passport (leave empty if not changing)</label>
 
                                     <div class="col-sm-12">
-                                    <input type="passpord" class="form-control" id="passpord" placeholder="Passport">
+                                    <input type="password"  v-model="form.password" class="form-control" id="password" placeholder="Passport">
+                                     <has-error :form="form" field="password"></has-error>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-12">
-                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <button @click.prevent="updateInfo" type="submit" class="btn btn-success">Update</button>
                                     </div>
                                 </div>
                                 </form>
@@ -124,6 +134,7 @@
         </div>
     </div>
 </template>
+
 
 
 
