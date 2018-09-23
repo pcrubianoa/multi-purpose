@@ -146,6 +146,12 @@ export default {
     console.log("Component mounted.");
   },
   methods: {
+    updateInfo() {
+      this.form
+        .put("api/profile")
+        .then(() => {})
+        .catch(() => {});
+    },
     updateProfile(e) {
       // console.log('uploading');
       let file = e.target.files[0];

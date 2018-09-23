@@ -72391,6 +72391,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    updateInfo: function updateInfo() {
+      this.form.put("api/profile").then(function () {}).catch(function () {});
+    },
     updateProfile: function updateProfile(e) {
       var _this = this;
 
