@@ -137,7 +137,6 @@
 
 
 
-
 <script>
 export default {
   data() {
@@ -158,10 +157,15 @@ export default {
   },
   methods: {
     updateInfo() {
+      this.$Progress.start();
       this.form
         .put("api/profile")
-        .then(() => {})
-        .catch(() => {});
+        .then(() => {
+          this.$Progress.finish();
+        })
+        .catch(() => {
+          this.$Progress.fail();
+        });
     },
     updateProfile(e) {
       // console.log('uploading');
@@ -169,11 +173,19 @@ export default {
       console.log(file);
       let reader = new FileReader();
       // let vm = this;
-      reader.onloadend = file => {
-        console.log("RESULT", reader.result);
-        this.form.photo = reader.result;
-      };
-      reader.readAsDataURL(file);
+      if (file["size"] < 2111775) {
+        reader.onloadend = file => {
+          // console.log('RESULT', reader.result)
+          this.form.photo = reader.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        swal({
+          type: "error",
+          title: "Oops...",
+          text: "You are uploading a large file"
+        });
+      }
     }
   },
   created() {
