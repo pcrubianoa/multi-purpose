@@ -163,7 +163,8 @@ export default {
   },
   methods: {
     getProfilePhoto() {
-      return "img/profile/" + this.form.photo;
+        let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
+        return photo;
     },
     updateInfo() {
       this.$Progress.start();
@@ -173,7 +174,8 @@ export default {
       this.form
         .put("api/profile")
         .then(() => {
-          this.$Progress.finish();
+            Fire.$emit('AfterCreate');
+            this.$Progress.finish();
         })
         .catch(() => {
           this.$Progress.fail();
